@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motivational Quote Generator | [Your Business Name]</title> <!-- Placeholder for your business name -->
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motivate - Your Daily Dose of Inspiration</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+  <div class="container">
+    <h1>Your Daily Motivation</h1>
+    <div id="quote-container">
+      <p id="quote-text">"{{ quote.text }}"</p>
+      <p id="quote-author">- {{ quote.author }}</p>
+    </div>
+    <button onclick="location.reload()">Get Another Quote</button>
+    <div class="share-options">
+      <a href="#">Share on Facebook</a>
+      <a href="#">Share on Twitter</a>
+    </div>
+  </div>
+</body>
+</html>

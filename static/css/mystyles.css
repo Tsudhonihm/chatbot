@@ -1,113 +1,75 @@
-/* General Body Styling */
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column; /* Stack header, main, and footer vertically */
-    min-height: 100vh;     /* Ensure the body takes up the full viewport height */
-    background-color: #f9f9f9; /* Light gray background */
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
 }
-
-/* Header Styling */
-.site-header {
-    background-color: #007bff; /* Blue background */
-    color: white;             /* White text */
-    text-align: center;       /* Center text horizontally */
-    padding: 20px 0;          /* Add vertical padding */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
-.site-header h1 {
-    margin: 0;                /* Remove default margin */
-    font-size: 2rem;          /* Adjust font size */
+h1 {
+  color: #333;
 }
-
-/* Main Content Styling */
-.site-content {
-    flex: 1;                  /* Allow the main content to grow and fill available space */
-    padding: 20px;            /* Add padding around the content */
-    max-width: 600px;         /* Limit width for larger screens */
-    margin: 0 auto;           /* Center the content horizontally */
-    background-color: #fff;   /* White background */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+#quote-container {
+  margin: 20px 0;
 }
-
-/* Chatbox Styling */
-.chatbox {
-    height: 300px;            /* Fixed height */
-    overflow-y: auto;         /* Enable vertical scrolling */
-    border: 1px solid #ddd;   /* Subtle border */
-    border-radius: 5px;       /* Rounded corners */
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #fafafa; /* Light background */
-    text-align: left;         /* Align chat messages to the left */
+#quote-text {
+  font-size: 1.5em;
+  color: #555;
 }
-
-/* Message Form Styling */
-.message-form {
-    display: flex;
-    flex-direction: column;   /* Stack input and button vertically */
-    align-items: center;      /* Center items horizontally */
-    gap: 10px;                /* Space between input and button */
+#quote-author {
+  font-style: italic;
+  color: #777;
 }
-
-.message-form input {
-    width: 100%;              /* Take up full width */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-
-.message-form button {
-    width: 100%;              /* Take up full width */
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff; /* Blue button */
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+button:hover {
+  background-color: #0056b3;
 }
-
-.message-form button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+.share-options {
+  margin-top: 20px;
 }
-
-/* Chat Messages Styling */
-.chatbox p {
-    margin: 5px 0;
-    word-wrap: break-word;    /* Ensure long words wrap */
+.share-options a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
 }
-
-.chatbox strong {
-    font-weight: bold;
-    margin-right: 5px;
+.share-options a:hover {
+  text-decoration: underline;
 }
-/* Footer Styling */
-.site-footer {
-    background-color: #f9f9f9; /* Light gray background */
-    color: #333;               /* Dark gray text */
-    text-align: center;        /* Center text horizontally */
-    padding: 10px 0;           /* Add vertical padding */
-    font-size: 0.9rem;         /* Adjust font size */
+/* Confetti Animation */
+@keyframes confetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
 }
-
-.site-footer p {
-    margin: 0;                 /* Remove default margin */
-}
-
-/* Footer Link Styling */
-.footer-link {
-    color: #007bff;             /* Blue hyperlink */
-    text-decoration: none;      /* Remove underline */
-    font-weight: bold;          /* Make the link bold for emphasis */
-}
-
-.footer-link:hover {
-    color: #0056b3;             /* Darker blue on hover */
-    text-decoration: underline; /* Add underline on hover */
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ff6f61;
+  top: 0;
+  left: 50%;
+  animation: confetti 3s ease-out forwards;
 }
