@@ -8,11 +8,14 @@ __pycache__/
 venv/
 env/
 ENV/
+chatbot_env/  # Add any custom virtual environment folder names here
 
 # Ignore IDE/editor files
 .vscode/
 .idea/
 *.sublime-project
+*.vscode-test/
+*.code-workspace
 
 # Ignore environment variables
 .env
@@ -21,3 +24,51 @@ ENV/
 # Ignore logs and databases
 *.log
 *.sqlite3
+instance/*.db  # If using Flask's instance folder for SQLite databases
+
+# Ignore system files
+.bashrc
+.bash_logout
+.profile
+.sudo_as_admin_successful
+.lesshst
+.gnupg/
+.cargo/
+.nvm/
+.python-version
+.rustup/
+.putty/
+.pki/
+
+# Ignore unrelated files and folders
+/Desktop/
+/Documents/
+/Downloads/
+/Pictures/
+/nginx stuff/
+/nginx-config-to-share/
+/lambda_package/
+/langflow-env/
+/venv (copy)/
+
+# Ignore build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+*.whl
+
+# Ignore macOS-specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Ignore Windows-specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Ignore Linux-specific files
+*~
