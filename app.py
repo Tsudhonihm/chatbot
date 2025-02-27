@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_cors import CORS
 import os
 import traceback
@@ -10,6 +12,22 @@ app = Flask(__name__)
 # Load environment variables
 DEBUG_MODE = os.environ.get("DEBUG_MODE", "True").lower() == "true"
 ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS", "http://anything-boes.com").split(",")
+
+# Configure the database URI (replace with your actual database URL)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'  # Example for SQLite
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Initialize the database
+db = SQLAlchemy(app)
+
+# Initialize Flask-Migrate
+migrate = Migrate(app, db)
+
+# Define a sample model (optional, if you don't already have one)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
 
 # Apply CORS
 CORS(app, resources={r"/message": {"origins": ALLOWED_ORIGINS}})
