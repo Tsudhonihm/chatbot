@@ -10,9 +10,8 @@ app = Flask(__name__)
 CORS(app, resources={r"/message": {"origins": "http://anything-boes.com"}})
 
 # Load DialoGPT tokenizer and model
-tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium")
 model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-medium")
-
+tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium", padding_side="left")
 # Home route to serve index.html
 @app.route('/')
 def home():

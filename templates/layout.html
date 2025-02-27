@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Anything Boes{% endblock %}</title>
-    <!-- Favicon -->
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    <!-- CSS -->
+    <!-- Link to CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css') }}">
-    <!-- JavaScript -->
-    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <!-- Favicon Reference -->
+   <!-- Standard Favicon -->
+<link rel="icon" href="{{ url_for('static', filename='favicons/favicon.ico') }}" type="image/x-icon">
+<!-- PNG Favicons -->
+<link rel="icon" href="{{ url_for('static', filename='favicons/favicon-16x16.png') }}" sizes="16x16" type="image/png">
+<link rel="icon" href="{{ url_for('static', filename='favicons/favicon-32x32.png') }}" sizes="32x32" type="image/png">
+<!-- Apple Touch Icon -->
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='favicons/apple-touch-icon.png') }}">
+<!-- Android Chrome Icons -->
+<link rel="icon" href="{{ url_for('static', filename='favicons/android-chrome-192x192.png') }}" sizes="192x192" type="image/png">
+<link rel="icon" href="{{ url_for('static', filename='favicons/android-chrome-512x512.png') }}" sizes="512x512" type="image/png">
 </head>
 <body>
     <!-- Header Section -->
@@ -27,7 +34,11 @@
     <!-- Footer Section -->
     <footer class="site-footer">
         <p>
-            &copy; 2025 <a href="https://sites.google.com/view/anything-boes-studio/716-254-7865" class="footer-link">Anything Boes</a> Design Studio. All rights reserved.
+            &copy; 2025 
+            <a href="https://sites.google.com/view/anything-boes-studio/716-254-7865" class="footer-link">
+                Anything Boes
+            </a> 
+            Design Studio. All rights reserved.
         </p>
     </footer>
 </body>

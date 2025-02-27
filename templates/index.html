@@ -1,36 +1,39 @@
 {% extends "layout.html" %}
-{% block title %}Anything Boes{% endblock %}
+
+{% block title %}Chatbot - Anything Boes{% endblock %}
+
 {% block content %}
 <div class="container">
     <main>
-        <h1>Chat with Bot</h1>
-<link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+        <h2>Chat with Bot</h2>
         <!-- Chatbox to display messages -->
         <div id="chatbox" class="chatbox">
             <!-- Chat messages will appear here -->
         </div>
         <!-- Form for sending messages -->
         <form id="messageForm" class="message-form">
-            <input 
-                type="text" 
-                id="message" 
-                name="message" 
-                placeholder="Type your message here..." 
-                required 
-                autofocus
-            >
-            <button type="submit" class="animated-button">Send</button>
+            <div class="input-container">
+                <input 
+                    type="text" 
+                    id="message" 
+                    name="message" 
+                    placeholder="Type your message here..." 
+                    required 
+                    autofocus
+                >
+                <button type="submit" class="animated-button">Send</button>
+            </div>
         </form>
     </main>
 </div>
-<!-- Link to CSS file -->
-<link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css') }}">
-<!-- Link to JavaScript file (if needed) -->
+
+<!-- Link to JavaScript -->
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 <script>
     // Handle form submission
     document.getElementById('messageForm').addEventListener('submit', async function(event) {
         event.preventDefault(); // Prevent default form submission
+
         // Get the user's message
         const messageInput = document.getElementById('message');
         const message = messageInput.value.trim();
@@ -38,12 +41,15 @@
             alert("Please enter a message.");
             return;
         }
+
         // Display the user's message in the chatbox
         const chatbox = document.getElementById('chatbox');
         chatbox.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
         chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to the bottom
+
         // Clear the input field
         messageInput.value = '';
+
         try {
             // Send the message to the server
             const response = await fetch('/message', {
@@ -53,11 +59,14 @@
                 },
                 body: JSON.stringify({ message })
             });
+
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
+
             // Parse the server's response
             const result = await response.json();
+
             // Display the bot's response in the chatbox
             chatbox.innerHTML += `<p><strong>Bot:</strong> ${result.response || result.error}</p>`;
             chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to the bottom
@@ -69,11 +78,3 @@
     });
 </script>
 {% endblock %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chatbot2</title>
-  <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
-
