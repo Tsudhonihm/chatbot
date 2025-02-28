@@ -10,11 +10,11 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 app = Flask(__name__)
 
 # Load environment variables
-DEBUG_MODE = os.environ.get("DEBUG_MODE", "True").lower() == "true"
 ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS", "http://anything-boes.com").split(",")
+DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///app.db")  # Default SQLite database
 
-# Configure the database URI (replace with your actual database URL)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'  # Example for SQLite
+# Configure the database URI
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize the database
@@ -33,8 +33,8 @@ class User(db.Model):
 CORS(app, resources={r"/message": {"origins": ALLOWED_ORIGINS}})
 
 # Load DialoGPT tokenizer and model globally
-tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium", padding_side="left")
-model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-medium")
+tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-small", padding_side="left")
+model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-small")
 
 # Home route to serve index.html (optional)
 @app.route('/')
@@ -61,6 +61,7 @@ def message():
         
         # Encode the user's input
         input_ids = tokenizer.encode(user_message + tokenizer.eos_token, return_tensors="pt")
+        
         # Generate a response using DialoGPT
         response_ids = model.generate(
             input_ids,
@@ -71,6 +72,7 @@ def message():
             top_k=50,
             do_sample=True
         )
+        
         # Decode the bot's response
         bot_response = tokenizer.decode(response_ids[:, input_ids.shape[-1]:][0], skip_special_tokens=True)
         
@@ -84,9 +86,7 @@ def message():
         return jsonify({'error': 'An unexpected error occurred'}), 500
 
 # Run the app
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    if DEBUG_MODE:
-        app.run(debug=True, host="0.0.0.0", port=port)
-    else:
-        print("Running in production mode. Use gunicorn to start the server.")
+if __name__ == '__main__':
+    # Get the PORT from the environment variable, defaulting to 8080 if not set
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port)
