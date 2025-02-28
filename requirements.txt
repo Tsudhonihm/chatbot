@@ -7,3 +7,4 @@ transformers==4.49.0
 torch==2.6.0
 python-dotenv==1.0.1
 numpy<2
+google-cloud-storage
