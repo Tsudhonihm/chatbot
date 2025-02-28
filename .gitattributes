@@ -1,0 +1,2 @@
+models/dialo-gpt-small/*.safetensors filter=lfs diff=lfs merge=lfs -text
+models/dialo-gpt-small/*.json filter=lfs diff=lfs merge=lfs -text
