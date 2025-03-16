@@ -72,3 +72,4 @@ Desktop.ini
 
 # Ignore Linux-specific files
 *~
+.vercel

@@ -1,15 +1,10 @@
 {
   "hosting": {
-    "public": "public", // Static files folder (keep EMPTY for Cloud Run proxy)
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"], // Ignored files
-    "rewrites": [
-      {
-        "source": "**", // All URLs (e.g., `/`, `/about`, `/api/...`)
-        "run": {
-          "serviceId": "chatbot", // Your Cloud Run service name
-          "region": "us-central1" // Region where Cloud Run is deployed
-        }
-      }
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
     ]
   }
 }
