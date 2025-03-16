@@ -3,43 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Anything Boes{% endblock %}</title>
+    <title>{% block title %}Anything Boes Design Studio{% endblock %}</title>
+
     <!-- Link to CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyles.css') }}">
+
     <!-- Favicon Reference -->
-   <!-- Standard Favicon -->
-<link rel="icon" href="{{ url_for('static', filename='favicons/favicon.ico') }}" type="image/x-icon">
-<!-- PNG Favicons -->
-<link rel="icon" href="{{ url_for('static', filename='favicons/favicon-16x16.png') }}" sizes="16x16" type="image/png">
-<link rel="icon" href="{{ url_for('static', filename='favicons/favicon-32x32.png') }}" sizes="32x32" type="image/png">
-<!-- Apple Touch Icon -->
-<link rel="apple-touch-icon" href="{{ url_for('static', filename='favicons/apple-touch-icon.png') }}">
-<!-- Android Chrome Icons -->
-<link rel="icon" href="{{ url_for('static', filename='favicons/android-chrome-192x192.png') }}" sizes="192x192" type="image/png">
-<link rel="icon" href="{{ url_for('static', filename='favicons/android-chrome-512x512.png') }}" sizes="512x512" type="image/png">
+    <link rel="icon" href="{{ url_for('static', filename='favicons/favicon.gif') }}" type="image/x-icon">
+
+    <!-- Optional: Add additional meta tags or scripts here -->
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="site-header">
-        <h1>Anything Boes Design Studio</h1>
-    </header>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <h1 class="animated-title">Welcome to Anything Boes Studio</h1>
+            <p class="animated-subtitle">Serious <span class="cool">( ly Cool )</span> Projects</p>
+            <div class="loader"></div>
+        </div>
+    </div>
 
     <!-- Main Content -->
-    <main class="site-content">
-        <!-- Content Block for Child Templates -->
-        {% block content %}
-        {% endblock %}
-    </main>
+    <div id="main-content" style="display: none;">
+        <!-- Header Section -->
+        <header class="site-header">
+            <div class="header-content">
+                <h1>Anything Boes Design Studio</h1>
+                <div class="social-icons">
+                    <!-- Facebook Icon -->
+                    <a href="https://www.facebook.com/AnythingBoes/" target="_blank" rel="noopener noreferrer" class="social-icon facebook-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#1877F2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
 
-    <!-- Footer Section -->
-    <footer class="site-footer">
-        <p>
-            &copy; 2025 
-            <a href="https://sites.google.com/view/anything-boes-studio/716-254-7865" class="footer-link">
-                Anything Boes
-            </a> 
-            Design Studio. All rights reserved.
-        </p>
-    </footer>
+                    <!-- Instagram Icon -->
+                    <a href="https://www.instagram.com/peter_boes1/" target="_blank" rel="noopener noreferrer" class="social-icon instagram-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#E1306C" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </header>
+                                                                     <!-- Button to Visit Another Page -->
+                                                                   <a href="https://sites.google.com/view/anythingboes/the-boes-base" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="visit-button">
+   Visit Boes Base
+</a>
+        <!-- Dynamic Content Block -->
+        <div class="content">
+            {% block content %}
+            <!-- Default content goes here -->
+            {% endblock %}
+        </div>
+
+        <!-- Footer Section -->
+        <footer class="site-footer">
+            <p class="animated-footer">
+                &copy; 2025 
+                <a href="https://sites.google.com/view/anything-boes-studio/716-254-7865" class="footer-link">
+                    Anything Boes
+                </a> 
+                Design Studio. All rights reserved.
+            </p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Hide splash screen and show main content after 3 seconds
+        setTimeout(() => {
+            document.getElementById('splash-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }, 3000);
+    </script>
+
+    <!-- Link to JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

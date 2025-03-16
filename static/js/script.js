@@ -3,9 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const userInput = document.getElementById("user-input");
   const sendButton = document.getElementById("send-btn");
 
+  // Favicon elements
+  const faviconLink = document.querySelector("link[rel*='icon']") || document.createElement('link');
+  faviconLink.type = 'image/x-icon';
+  faviconLink.rel = 'shortcut icon';
+  document.head.appendChild(faviconLink);
+
   // Check if elements exist
   if (!messagesContainer || !userInput || !sendButton) {
-    console.error(#"Error: Required DOM elements not found!");
+    console.error("Error: Required DOM elements not found!");
     return;
   }
 
@@ -29,6 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Clear input field
     userInput.value = "";
 
+    // Animate favicon while waiting for bot response
+    animateFavicon();
+
     // Call the Flask backend to get the bot's response
     try {
       const botResponse = await fetchBotResponse(userMessage);
@@ -36,6 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       console.error("Error fetching bot response:", error);
       addMessage("Bot", "Sorry, I encountered an error. Please try again.");
+    } finally {
+      // Restore the default favicon after the response
+      restoreDefaultFavicon();
     }
   });
 
@@ -53,5 +65,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     const data = await response.json();
     return data.response;
+  }
+
+  // Favicon Animation Logic
+  const defaultFavicon = "/static/favicons/favicon.gif"; // Default animated favicon
+  const activeFavicon = "/static/favicons/active-favicon.gif"; // Favicon for active state
+
+  function animateFavicon() {
+    faviconLink.href = activeFavicon; // Change to active favicon
+  }
+
+  function restoreDefaultFavicon() {
+    faviconLink.href = defaultFavicon; // Restore default favicon
   }
 });

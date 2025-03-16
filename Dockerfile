@@ -18,8 +18,13 @@ FROM python:3.10-slim
 # Set working directory
 WORKDIR /app
 
-# Copy only necessary files from the builder stage
+# Copy installed Python packages from the builder stage
 COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
+
+# Copy the gunicorn executable from the builder stage
+COPY --from=builder /usr/local/bin/gunicorn /usr/local/bin/gunicorn
+
+# Copy application code
 COPY . .
 
 # Expose the port
